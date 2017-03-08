@@ -6,10 +6,10 @@ import edu.uweo.javaintro.tools.Turtle;
 
 public class Painter {
 	
-	private double r;
-	private double t;
-	private Turtle laplace;
-	private Color color;
+	private final double r;
+	private final double t;
+	private final Turtle laplace;
+	private final Color color;
 	
 	public Painter(double r,double t, Color color, Turtle laplace) {
 		this.color = color;
@@ -18,17 +18,6 @@ public class Painter {
 		this.t = t;
 	}
 	
-	public static void main(String[] args) {
-		
-		for ( double r=700;r>=0;r-=1) {
-			for ( double t=0; t<=360 ;t+=.1) { 
-				Turtle laplace = new Turtle();
-				Mandelbrot mandelbrot = new Mandelbrot(xValue(r,t), yValue(r,t));
-				Painter painter = new Painter(r, t, mandelbrot.getColor(), laplace );
-				painter.paintPoint();
-			}		
-		}
-	}
 
 	public double getT() {
 		return t;
@@ -61,4 +50,5 @@ public class Painter {
 		getLaplace().move(t, r);
 		getLaplace().fillCircle(1);
 	}
+	
 }

@@ -1,5 +1,6 @@
 package com.fractal;
 
+
 public class Complex {
 	
 	private double real;

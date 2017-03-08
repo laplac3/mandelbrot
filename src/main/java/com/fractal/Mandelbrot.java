@@ -1,11 +1,13 @@
 package com.fractal;
 
 import java.awt.Color;
-// use binary file over serialization.
+
+
 public class Mandelbrot extends Complex {
 	 
-	private static int maxIterations = 1000;
-	private Color color;
+
+	private static final int maxIterations = 1000;
+	private final Color color;
 	
 	public Mandelbrot (double real, double complex) {
 		super(real,complex);
@@ -13,7 +15,8 @@ public class Mandelbrot extends Complex {
 	}
 	
 	public Mandelbrot() {
-		super();
+		super(0,0);
+		color = Color.BLACK;
 	}
 	
 	public Color getColor() {
