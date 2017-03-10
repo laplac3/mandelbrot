@@ -1,22 +1,37 @@
 package com.fractal;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 
-public class Mandelbrot extends Complex {
+public class Mandelbrot extends Complex implements Serializable {
 	 
 
+	@Override
+	public String toString() {
+		return "Mandelbrot [color=" + color + ", complex=" + complex + "]";
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5622012588737880341L;
 	private static final int maxIterations = 1000;
 	private final Color color;
+	private final Complex complex;
 	
-	public Mandelbrot (double real, double complex) {
-		super(real,complex);
+	public Mandelbrot (Complex complex) {
+		this.complex = complex;
 		color = returnColor();
 	}
 	
 	public Mandelbrot() {
-		super(0,0);
+		this.complex = new Complex();
 		color = Color.BLACK;
+	}
+	
+	public Complex getMComplex() {
+		return this.complex;
 	}
 	
 	public Color getColor() {
@@ -26,7 +41,7 @@ public class Mandelbrot extends Complex {
 	private Color returnColor() {
 		int n =0;
 		Complex Z = new Complex();
-		Complex C = new Complex( getReal(), getComplex());
+		Complex C = complex;
 		double absoluteNumber = C.abs();
 		Color color;
 		

@@ -1,32 +1,25 @@
 package app;
 
-import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.List;
 
+import com.fractal.Mandelbrot;
 import com.fractal.Painter;
-
-import app.SerialOut.StringPainter;
-import edu.uweo.javaintro.tools.Turtle;
 
 public class DrawFromSerial {
 
-	
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
-       
-		
-		FileInputStream fis = new FileInputStream("PaintersList.ser");
+	public static void main(String[] args) throws IOException, ClassNotFoundException {	
+		FileInputStream fis = new FileInputStream("MandelbrotsList.ser");
         ObjectInputStream fin = new ObjectInputStream(fis);
 
-        // read the clients
+        // read the Mandelbrots.
         @SuppressWarnings("unchecked")
-		List<StringPainter> stringPainters = (List<StringPainter>) fin.readObject();
+		List<Mandelbrot> mandlebrots = (List<Mandelbrot>) fin.readObject();
         fin.close();
-        for ( StringPainter stringPainter : stringPainters ) {
-        	Turtle laplace = new Turtle();
-        	Painter painter = new Painter(stringPainter.getR(), stringPainter.getT(), stringPainter.getColor(), laplace );
+        for ( Mandelbrot mandelbrot : mandlebrots ) {
+        	Painter painter = new Painter( mandelbrot);
         	painter.paintPoint();
         	
         }

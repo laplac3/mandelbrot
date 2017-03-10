@@ -1,10 +1,15 @@
 package com.fractal;
 
+import java.io.Serializable;
 
-public class Complex {
+public class Complex implements Serializable {
 	
-	private double real;
-	private double complex;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8941271271488520234L;
+	private final double real;
+	private final double complex;
 	
 	public Complex( double real, double complex ) {
 		this.real = real;
@@ -20,16 +25,8 @@ public class Complex {
 		return real;
 	}
 
-	public void setReal(double real) {
-		this.real = real;
-	}
-
 	public double getComplex() {
 		return complex;
-	}
-
-	public void setComplex(double complex) {
-		this.complex = complex;
 	}
 	
 	public String toString() {
@@ -51,7 +48,5 @@ public class Complex {
 		double com = 2*this.real*this.complex;
 		return new Complex(re,com);
 	}
-	
-	
 	
 }

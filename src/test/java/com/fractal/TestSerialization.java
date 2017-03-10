@@ -13,9 +13,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import app.SerialOut;
-import app.SerialOut.StringPainter;
-import edu.uweo.javaintro.tools.Turtle;
+
 
 
 public class TestSerialization {
@@ -23,15 +21,13 @@ public class TestSerialization {
 	@Test
 	public void test() throws IOException, ClassNotFoundException {
 		
-		final List<StringPainter> stringPaintersIn = new ArrayList<StringPainter>();
+		final List<Mandelbrot> mandelbrotsOut= new ArrayList<Mandelbrot>();
         FileOutputStream foo = new FileOutputStream("PaintersListTest.ser");
         ObjectOutputStream fOut = new ObjectOutputStream(foo);
-        
-        SerialOut serialOut = new SerialOut();
-		String color = Integer.toString(Color.GREEN.getRGB());
-		StringPainter stringPainterGreen = serialOut.new StringPainter(0, 0, color);
-		stringPaintersIn.add(stringPainterGreen);
-        fOut.writeObject(stringPaintersIn);
+       
+        Mandelbrot mandelbrotOut = new Mandelbrot(new Complex());
+        mandelbrotsOut.add(mandelbrotOut);
+        fOut.writeObject(mandelbrotsOut);
         fOut.close();
         
 		FileInputStream fis = new FileInputStream("PaintersListTest.ser");
@@ -39,10 +35,10 @@ public class TestSerialization {
 
         // paint from ser file
         @SuppressWarnings("unchecked")   
-		List<StringPainter> stringPaintersOut = (List<StringPainter>) fin.readObject();
+		List<Mandelbrot> mandelbrotsIns = (List<Mandelbrot>) fin.readObject();
         fin.close();
-        for ( StringPainter stringPainter : stringPaintersOut ) {
-        	assertEquals(Color.GREEN,stringPainter.getColor()); 
+        for ( Mandelbrot mandelbrotIn : mandelbrotsIns ) {
+        	assertEquals(Color.BLACK,mandelbrotIn.getColor());
 
         } 
 	}

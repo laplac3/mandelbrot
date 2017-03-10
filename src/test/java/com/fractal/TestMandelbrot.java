@@ -22,7 +22,7 @@ public class TestMandelbrot {
 	
 	@Before
 	public void initializer() {
-		mandelbrot = new Mandelbrot(real, complex);
+		mandelbrot = new Mandelbrot(new Complex(real, complex));
 	}
 	
 	public TestMandelbrot(double real, double complex, Color expectedColor) {
